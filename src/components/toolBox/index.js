@@ -5,7 +5,8 @@ import { motion } from "framer-motion";
 const ToolBoxWrapper = styled.div`
   min-height: 2rem;
   position: absolute;
-  left: 4rem;
+  left: ${props => props.position === 'right' ? 'auto' : '4rem' };
+  right: ${props => props.position === 'right' ? '4rem' : 'auto' };
   top: 0;
   bottom: 0;
   display: flex;
@@ -33,6 +34,7 @@ const ToolBoxWrapper = styled.div`
       flex-direction: column;
       justify-content: center;
       transition: visibility 0s, opacity 0.5s linear;
+      overflow: hidden;
     }
 
     .right.active {
@@ -41,6 +43,7 @@ const ToolBoxWrapper = styled.div`
     }
 
     .right.inActive {
+      width: 0;
       visibility: hidden;
       opacity: 0;
       transition: visibility 0s linear 100ms, opacity 0.5s linear;
@@ -51,7 +54,9 @@ const ToolBoxWrapper = styled.div`
 function ToolBox( props ) {
 
   return (
-    <ToolBoxWrapper>
+    <ToolBoxWrapper
+      position={props.position}
+    >
       <motion.div
         className='toolBoxContainer'
         initial={{width: '4rem'}}

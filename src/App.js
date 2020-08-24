@@ -1,7 +1,22 @@
 import React, { useState } from 'react';
-import { BgChanger, ToolBox, Menu, Slider } from './components';
-import { FullScreen, useFullScreenHandle } from "react-full-screen";
-import { faPalette, faExpand, faWindowMinimize, faArrowAltCircleRight, faCompress } from '@fortawesome/free-solid-svg-icons'
+import { 
+  BgChanger, 
+  ToolBox, 
+  Menu, 
+  Slider 
+} from './components';
+import { 
+  FullScreen, 
+  useFullScreenHandle 
+} from "react-full-screen";
+import { 
+  faPalette, 
+  faExpand, 
+  faWindowMinimize, 
+  faArrowAltCircleRight, 
+  faCompress,
+  faArrowAltCircleLeft
+} from '@fortawesome/free-solid-svg-icons'
 
 import './App.css';
 
@@ -11,6 +26,7 @@ function App() {
   let [isPanelActive, setIsPanelActive] = useState(false);
   let [bgColor, setBgColor] = useState('200, 200, 200');
   let [colorArr, setColorArr] = useState([0, 0, 0]);
+  let [panelPosition, setPanelPosition] = useState('left');
 
   const menuList = [
     {
@@ -39,8 +55,16 @@ function App() {
       title: 'Minimize panel'
     },
     {
-      icon: faArrowAltCircleRight,
-      title: 'Snap to right'
+      icon: panelPosition === 'right' ? faArrowAltCircleLeft : faArrowAltCircleRight,
+      title: panelPosition === 'right' ? 'Snap to right' : 'Snap to left',
+      onClick: () => {
+        if(panelPosition === 'right') {
+          setPanelPosition('left');
+        }
+        else {
+          setPanelPosition('right');
+        }
+      }
     },
   ];
 
@@ -52,6 +76,9 @@ function App() {
         title={menu.title} 
         onClick={menu.onClick ? menu.onClick : null}
         disableToaster={isPanelActive}
+        toasterPosition={
+          panelPosition === 'right' ? 'left' : 'right' 
+        }
       />
     )
   });
@@ -70,6 +97,7 @@ function App() {
         active={isPanelActive} 
         menuList={menus}
         onMouseLeave={setIsPanelActive}
+        position={panelPosition}
         toolBox={
           <>
             <Slider 

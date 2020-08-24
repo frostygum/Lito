@@ -1,4 +1,4 @@
-This Project will turn your screen into working studio light.
+This Project will turn your screen into working studio light. See Preview [here](https://frostygum.github.io/Lito/)
 
 ## Available Scripts
 

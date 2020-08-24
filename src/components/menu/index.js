@@ -30,7 +30,8 @@ const MenuToaster = styled.div`
   text-align: center;
   color: var(--dark);
   position: absolute;
-  left: 7rem;
+  left: ${props => props.position === 'right' ? '7rem' : 'auto' };
+  right: ${props => props.position === 'right' ? 'auto' : '7rem' };
   box-shadow: var(--shadow);
   display: flex;
   align-items: center;
@@ -54,7 +55,7 @@ function Menu( props ) {
       </MenuContainer>
       {
         isShown && !props.disableToaster ?
-        <MenuToaster>
+        <MenuToaster position={props.toasterPosition}>
           <span>{ props.title }</span>
         </MenuToaster>
       : 
