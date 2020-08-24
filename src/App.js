@@ -1,25 +1,103 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import { BgChanger, ToolBox, Menu, Slider } from './components';
+import { FullScreen, useFullScreenHandle } from "react-full-screen";
+import { faPalette, faExpand, faWindowMinimize, faArrowAltCircleRight, faCompress } from '@fortawesome/free-solid-svg-icons'
+
 import './App.css';
 
 function App() {
+  const handle = useFullScreenHandle();
+  let [isFullscreen, setIsFullscreen] = useState(false);
+  let [isPanelActive, setIsPanelActive] = useState(false);
+  let [bgColor, setBgColor] = useState('200, 200, 200');
+  let [colorArr, setColorArr] = useState([0, 0, 0]);
+
+  const menuList = [
+    {
+      icon: faPalette,
+      title: 'Change color',
+      onClick: () => {
+        setIsPanelActive(!isPanelActive);
+      }
+    },
+    {
+      icon: isFullscreen ? faCompress : faExpand,
+      title: isFullscreen ? 'Exit Fullscreen' : 'Fullscreen',
+      onClick: () => {
+        if(!isFullscreen) {
+          handle.enter();
+          setIsFullscreen(true);
+        }
+        else {
+          handle.exit();
+          setIsFullscreen(false);
+        }
+      }
+    },
+    {
+      icon: faWindowMinimize,
+      title: 'Minimize panel'
+    },
+    {
+      icon: faArrowAltCircleRight,
+      title: 'Snap to right'
+    },
+  ];
+
+  let menus = menuList.map((menu, menuKey) => {
+    return(
+      <Menu 
+        key={menuKey}
+        icon={menu.icon} 
+        title={menu.title} 
+        onClick={menu.onClick ? menu.onClick : null}
+        disableToaster={isPanelActive}
+      />
+    )
+  });
+
+  const handleChangeValue = (value, idx) => {
+    let arr = [...colorArr];
+    arr[idx] = value;
+    setColorArr(arr);
+    setBgColor(colorArr.join());
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <FullScreen handle={handle}>
+      <BgChanger color={bgColor} onClick={setIsPanelActive}/>
+      <ToolBox 
+        active={isPanelActive} 
+        menuList={menus}
+        onMouseLeave={setIsPanelActive}
+        toolBox={
+          <>
+            <Slider 
+              min='0'
+              max='255'
+              step='1'
+              title='Red'
+              value={colorArr[0]}
+              setValue={(value) => handleChangeValue(value, 0)}
+            />
+            <Slider 
+              min='0'
+              max='255'
+              step='1'
+              title='Green'
+              setValue={(value) => handleChangeValue(value, 1)}
+            />
+            <Slider 
+              min='0'
+              max='255'
+              step='1'
+              title='Blue'
+              setValue={(value) => handleChangeValue(value, 2)}
+            />
+          </>
+        }
+      />
+    </FullScreen>
   );
 }
 
