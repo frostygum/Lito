@@ -27,6 +27,7 @@ function App() {
   let [bgColor, setBgColor] = useState('200, 200, 200');
   let [colorArr, setColorArr] = useState([0, 0, 0]);
   let [panelPosition, setPanelPosition] = useState('left');
+  let [isMinimize, setIsMinimize] = useState(false);
 
   const menuList = [
     {
@@ -52,7 +53,10 @@ function App() {
     },
     {
       icon: faWindowMinimize,
-      title: 'Minimize panel'
+      title: 'Minimize panel',
+      onClick: () => {
+        setIsMinimize(true);
+      }
     },
     {
       icon: panelPosition === 'right' ? faArrowAltCircleLeft : faArrowAltCircleRight,
@@ -98,6 +102,8 @@ function App() {
         menuList={menus}
         onMouseLeave={setIsPanelActive}
         position={panelPosition}
+        isMinimize={isMinimize}
+        setIsMinimize={setIsMinimize}
         toolBox={
           <>
             <Slider 
