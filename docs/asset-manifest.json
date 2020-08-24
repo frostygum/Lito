@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/Lito/static/css/main.fca33bc5.chunk.css",
-    "main.js": "/Lito/static/js/main.29aa021d.chunk.js",
-    "main.js.map": "/Lito/static/js/main.29aa021d.chunk.js.map",
+    "main.css": "/Lito/static/css/main.ecd23419.chunk.css",
+    "main.js": "/Lito/static/js/main.b23d5f57.chunk.js",
+    "main.js.map": "/Lito/static/js/main.b23d5f57.chunk.js.map",
     "runtime-main.js": "/Lito/static/js/runtime-main.778195e6.js",
     "runtime-main.js.map": "/Lito/static/js/runtime-main.778195e6.js.map",
-    "static/js/2.93aeb0bc.chunk.js": "/Lito/static/js/2.93aeb0bc.chunk.js",
-    "static/js/2.93aeb0bc.chunk.js.map": "/Lito/static/js/2.93aeb0bc.chunk.js.map",
+    "static/js/2.3220fafd.chunk.js": "/Lito/static/js/2.3220fafd.chunk.js",
+    "static/js/2.3220fafd.chunk.js.map": "/Lito/static/js/2.3220fafd.chunk.js.map",
     "index.html": "/Lito/index.html",
-    "precache-manifest.d65c98864ac2df7375f2df61b70eb073.js": "/Lito/precache-manifest.d65c98864ac2df7375f2df61b70eb073.js",
+    "precache-manifest.93127770266fd13d8eafea7184f36603.js": "/Lito/precache-manifest.93127770266fd13d8eafea7184f36603.js",
     "service-worker.js": "/Lito/service-worker.js",
-    "static/css/main.fca33bc5.chunk.css.map": "/Lito/static/css/main.fca33bc5.chunk.css.map",
-    "static/js/2.93aeb0bc.chunk.js.LICENSE.txt": "/Lito/static/js/2.93aeb0bc.chunk.js.LICENSE.txt"
+    "static/css/main.ecd23419.chunk.css.map": "/Lito/static/css/main.ecd23419.chunk.css.map",
+    "static/js/2.3220fafd.chunk.js.LICENSE.txt": "/Lito/static/js/2.3220fafd.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.778195e6.js",
-    "static/js/2.93aeb0bc.chunk.js",
-    "static/css/main.fca33bc5.chunk.css",
-    "static/js/main.29aa021d.chunk.js"
+    "static/js/2.3220fafd.chunk.js",
+    "static/css/main.ecd23419.chunk.css",
+    "static/js/main.b23d5f57.chunk.js"
   ]
 }

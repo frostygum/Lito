@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/Lito/precache-manifest.d65c98864ac2df7375f2df61b70eb073.js"
+  "/Lito/precache-manifest.93127770266fd13d8eafea7184f36603.js"
 );
 
 self.addEventListener('message', (event) => {
