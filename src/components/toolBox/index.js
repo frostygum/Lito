@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { motion } from "framer-motion";
 import { faAngleUp } from '@fortawesome/free-solid-svg-icons';
@@ -16,7 +16,7 @@ const Wrapper = styled.div`
 
   .toolBoxContainer {
     min-height: 2rem;
-    width: 6rem;
+    width: 4rem;
     background-color: var(--dark);
     position: relative;
     border-radius: var(--rounded);
@@ -58,7 +58,7 @@ const Wrapper = styled.div`
     border-radius: var(--rounded);
     background-color: var(--dark);
     position: absolute;
-    bottom: 4rem;
+    bottom: ${props => props.bottom};
     display: flex;
     justify-content: center;
     align-items: center;
@@ -66,21 +66,43 @@ const Wrapper = styled.div`
     margin: 0.8rem;
     color: var(--green);
   }
+
+  /* For desktop: */
+  @media only screen and (min-width: 768px) {
+    
+  }
 `;
 
 function ToolBox( props ) {
+
+  let screenSize = window.innerWidth;
+  let minWidth = 900;
+  let [margin, setMargin] = useState('4rem');
+  let [toolBoxContainerSize, setToolBoxContainerSize] = useState('30rem');
+
+  useEffect(() => {
+    if(screenSize <= minWidth) {
+      setMargin('1rem');
+      setToolBoxContainerSize(screenSize * 0.05 + 'rem');
+    }
+    else {
+      setMargin('4rem');
+      setToolBoxContainerSize('30rem');
+    }  
+  }, [screenSize, minWidth]);
+
   return (
     <Wrapper
-      position={props.position}
+      bottom={margin}
     >
       <motion.div
         className={'toolBoxWrapper'}
-        initial={{left: '4rem', right: 'auto'}}
+        initial={{left: margin, right: 'auto'}}
         animate={
           props.position === 'right' ?
-            {left: 'auto', right: '4rem'}
+            {left: 'auto', right: margin}
           :
-            {left: '4rem', right: 'auto'}
+            {left: margin, right: 'auto'}
         }
         transition={{
           type: "spring",
@@ -92,7 +114,7 @@ function ToolBox( props ) {
           className='toolBoxContainer'
           initial={{width: '4rem', scale: 1, y: 0}}
           animate={{
-            width: props.active ? '30rem' : '4rem', 
+            width: props.active ? toolBoxContainerSize : '4rem', 
             scale: props.isMinimize ? 0 : 1, 
             y: props.isMinimize ? '40vh' : 0
           }}

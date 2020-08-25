@@ -16,7 +16,7 @@ import {
   faArrowAltCircleRight, 
   faCompress,
   faArrowAltCircleLeft
-} from '@fortawesome/free-solid-svg-icons'
+} from '@fortawesome/free-solid-svg-icons';
 
 import './App.css';
 
@@ -56,6 +56,7 @@ function App() {
       title: 'Minimize panel',
       onClick: () => {
         setIsMinimize(true);
+        setIsPanelActive(false);
       }
     },
     {
